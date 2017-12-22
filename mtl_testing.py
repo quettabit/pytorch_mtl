@@ -16,7 +16,7 @@ from torch.autograd import Variable
 from torch import optim
 import torch.nn.functional as F
 
-use_cuda = False
+use_cuda = torch.cuda.is_available()
 
 def printMsg(msg):
     current_time = datetime.datetime.now()
@@ -190,8 +190,10 @@ max_length=MAX_LENGTH, printEvery=25):
             ni = topi[0][0]
 
             loss += criterion(decoder_output, target_variable[di])
-
-            decoded_words.append(meta_data.index2word[ni])
+            if ni == EOS_token:
+                break
+            else:
+                decoded_words.append(meta_data.index2word[ni])
 
             decoder_input = Variable(torch.LongTensor([[ni]]))
             decoder_input = decoder_input.cuda() if use_cuda else decoder_input
@@ -252,7 +254,7 @@ if __name__ == '__main__':
     test_data = pickle.load(open('pickles/test_summ_data.pkl', 'rb'))
     printMsg('models, metadata, and data loaded ..')
     printMsg('testing started ..')
-    loss, nw_outputs = test(encoder.cpu().eval(), decoder.cpu().eval(), test_data, meta_data)
+    loss, nw_outputs = test(encoder.eval(), decoder.eval(), test_data, meta_data)
     printMsg('testing done ..')
     printMsg("The negative log likelihood loss for the test data is %s .." % (loss))
     avg_r1_f1, r1_f1_scores = rogue1F1(nw_outputs)
