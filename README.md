@@ -10,4 +10,4 @@
 
 #### Credits
 
-The project is inspired from Pasunuru et al's (2017) work on ["Towards Improving Abstractive Summarization via Entailment Generation"](http://www.aclweb.org/anthology/W17-4504)
+The project is inspired from Pasunuru et al's (2017) work on ["Towards Improving Abstractive Summarization via Entailment Generation"](http://www.aclweb.org/anthology/W17-4504) and Sean Robertson's [tutorial](http://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html) on seq2seq translation.
