@@ -7,3 +7,7 @@
 - In case of reloading the models and continuing the training, the models should be placed in `reloads/` directory.
 - When all the necessary files and data are present, simply run `python mtl_learning.py` for training and `python mtl_testing.py` for testing.
 - The outputs of the training would be present in a file named `outputs.txt` and that of testing would be present in `test_output.txt`
+
+#### Credits
+
+The project is inspired from Pasunuru et al's (2017) work on ("Towards Improving Abstractive Summarization via Entailment Generation")[http://www.aclweb.org/anthology/W17-4504]
